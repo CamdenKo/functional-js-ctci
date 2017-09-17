@@ -15,6 +15,7 @@ module.exports = {
     const whiteSpaceCount = toTestList
       .filter(char => char === ' ')
       .size
-    console.log(whiteSpaceCount)
+    const numToReplace = whiteSpaceCount / 3
+
   }
 }
