@@ -10,7 +10,7 @@ module.exports = {
     const list2 = List(string2.split('')).sort()
     return list1.equals(list2)
   },
-  urlIfy: (toTest) =>
+  urlIfy: toTest =>
     toTest
       .split(' ')
       .filter(ele => ele)
@@ -28,9 +28,10 @@ module.exports = {
         const newValue = accumalator[curValue] ?
           accumalator[curValue] + 1 :
           1
-        return Object.assign(accumalator, {[curValue]: newValue})
+        return Object.assign(accumalator, { [curValue]: newValue })
       }, {})
 
     return countOddObjValues(letterCounts) <= 1
   },
+
 }

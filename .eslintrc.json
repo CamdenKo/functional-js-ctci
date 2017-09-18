@@ -1,5 +1,10 @@
 {
   "globals": {
-    "describe": false
-  }
+    "describe": false,
+    "it": false
+  },
+  "rules": {
+    "semi":"off"
+  },
+  "extends": "airbnb"
 }
