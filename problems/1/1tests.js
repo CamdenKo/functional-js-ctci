@@ -73,5 +73,9 @@ describe('Chapter 1, [], ""', () => {
       const string = 'a b c d c b a'
       expect(palindromePermutation(string)).to.be.eql(true)
     })
+    it('returns false', () => {
+      const string = '22j2ijii'
+      expect(palindromePermutation(string)).to.be.eql(false)
+    })
   })
 })
