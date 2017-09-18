@@ -16,14 +16,21 @@ module.exports = {
       .filter(ele => ele)
       .join('%20'),
   palindromePermutation: (string) => {
-    return string
+    const countOddObjValues = obj =>
+      Object.values(obj)
+        .filter(count => count % 2 === 1)
+        .length
+
+    const letterCounts = string
       .split('')
-      .filter(ele => ele)
+      .filter(ele => ele !== ' ')
       .reduce((accumalator, curValue) => {
         const newValue = accumalator[curValue] ?
           accumalator[curValue] + 1 :
           1
         return Object.assign(accumalator, {[curValue]: newValue})
       }, {})
-  }
+
+    return countOddObjValues(letterCounts) <= 1
+  },
 }

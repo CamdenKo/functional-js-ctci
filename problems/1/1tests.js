@@ -3,6 +3,7 @@ const {
   isUnique,
   checkPermutation,
   urlIfy,
+  palindromePermutation,
 } = require('./1problems')
 
 describe('Chapter 1, [], ""', () => {
@@ -60,6 +61,17 @@ describe('Chapter 1, [], ""', () => {
     it('properly handles many spaces', () => {
       const string = 'url 1 2 3 4        '
       expect(urlIfy(string)).to.be.eql('url%201%202%203%204')
+    })
+  })
+
+  describe('1.4 palindromePermutation', () => {
+    it('returns true for null string', () => {
+      const string = ''
+      expect(palindromePermutation(string)).to.be.eql(true)
+    })
+    it('ignores whitespace', () => {
+      const string = 'a b c d c b a'
+      expect(palindromePermutation(string)).to.be.eql(true)
     })
   })
 })
