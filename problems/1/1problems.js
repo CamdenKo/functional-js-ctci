@@ -3,6 +3,14 @@ const {
   List,
 } = require('immutable')
 
+const letterCountsObjFromArr = arr =>
+  arr.reduce((accumalator, curValue) => {
+    const newValue = accumalator[curValue] ?
+      accumalator[curValue] + 1 :
+      1
+    return Object.assign(accumalator, { [curValue]: newValue })
+  }, {})
+
 module.exports = {
   isUnique: toTest => Set(toTest.split('')).size === toTest.length,
   checkPermutation: (string1, string2) => {
@@ -21,17 +29,30 @@ module.exports = {
         .filter(count => count % 2 === 1)
         .length
 
-    const letterCounts = string
+    const letterCounts = letterCountsObjFromArr(string
       .split('')
-      .filter(ele => ele !== ' ')
-      .reduce((accumalator, curValue) => {
-        const newValue = accumalator[curValue] ?
-          accumalator[curValue] + 1 :
-          1
-        return Object.assign(accumalator, { [curValue]: newValue })
-      }, {})
-
+      .filter(ele => ele !== ' '),
+    )
     return countOddObjValues(letterCounts) <= 1
   },
+  oneAway: (string1, string2) => {
+    const insertionDelZeroDiff = (letterObj1, letterObj2) => {
+      const diffObj = Object.keys(letterObj2)
+        .reduce((accumalator, curValue) => {
+          const newValue = accumalator[curValue] ?
+            Math.abs(accumalator[curValue] - (letterObj2[curValue] ? letterObj2[curValue] : 0)) :
+            letterObj2[curValue]
+          return Object.assign(accumalator, { [curValue]: newValue })
+        },
+        letterObj1)
 
+        Object.values(diffObj)
+          .reduce()
+    }
+
+    [string1, string2]
+      .map(str => letterCountsObjFromArr(str.split('')))
+      // .reduce((accumalator, curValue) => (), false)
+  },
 }
+

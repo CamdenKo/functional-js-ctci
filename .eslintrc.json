@@ -1,7 +1,8 @@
 {
   "globals": {
     "describe": false,
-    "it": false
+    "it": false,
+    "module": false
   },
   "rules": {
     "semi":"off"

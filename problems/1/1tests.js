@@ -4,6 +4,7 @@ const {
   checkPermutation,
   urlIfy,
   palindromePermutation,
+  oneAway,
 } = require('./1problems')
 
 describe('Chapter 1, [], ""', () => {
@@ -76,6 +77,33 @@ describe('Chapter 1, [], ""', () => {
     it('returns false', () => {
       const string = '22j2ijii'
       expect(palindromePermutation(string)).to.be.eql(false)
+    })
+  })
+
+  describe('1.5 oneAway', () => {
+    it('returns true for identical strings', () => {
+      const strings = ['asdf', 'asdf']
+      expect(oneAway(...strings)).to.be.eql(true)
+    })
+    it('has expected behavior for null strings', () => {
+      const strings = ['', 'a']
+      expect(oneAway(...strings)).to.be.eql(true)
+    })
+    it('works for insertion', () => {
+      const strings = ['asdf', 'asedf']
+      expect(oneAway(...strings)).to.be.eql(true)
+    })
+    it('works for deletion', () => {
+      const strings = ['asdf', 'asf']
+      expect(oneAway(...strings)).to.be.eql(true)
+    })
+    it('works for replacement', () => {
+      const strings = ['asdf', 'asef']
+      expect(oneAway(...strings)).to.be.eql(true)
+    })
+    it('returns false if more than one away', () => {
+      const strings = ['adsffff', 'asdff']
+      expect(oneAway(...strings)).to.be.eql(false)
     })
   })
 })
