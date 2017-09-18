@@ -10,12 +10,9 @@ module.exports = {
     const list2 = List(string2.split('')).sort()
     return list1.equals(list2)
   },
-  urlIfy: (toTest) => {
-    const toTestList = List(toTest.split(''))
-    const whiteSpaceCount = toTestList
-      .filter(char => char === ' ')
-      .size
-    const numToReplace = whiteSpaceCount / 3
-
-  }
+  urlIfy: (toTest) =>
+    toTest
+      .split(' ')
+      .filter(ele => ele)
+      .join('%20'),
 }

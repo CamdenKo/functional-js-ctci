@@ -57,5 +57,9 @@ describe('Chapter 1, [], ""', () => {
       const string = 'url 1  '
       expect(urlIfy(string)).to.be.eql('url%201')
     })
+    it('properly handles many spaces', () => {
+      const string = 'url 1 2 3 4        '
+      expect(urlIfy(string)).to.be.eql('url%201%202%203%204')
+    })
   })
 })
