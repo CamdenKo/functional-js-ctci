@@ -15,4 +15,15 @@ module.exports = {
       .split(' ')
       .filter(ele => ele)
       .join('%20'),
+  palindromePermutation: (string) => {
+    return string
+      .split('')
+      .filter(ele => ele)
+      .reduce((accumalator, curValue) => {
+        const newValue = accumalator[curValue] ?
+          accumalator[curValue] + 1 :
+          1
+        return Object.assign(accumalator, {[curValue]: newValue})
+      }, {})
+  }
 }
