@@ -36,7 +36,7 @@ module.exports = {
     return countOddObjValues(letterCounts) <= 1
   },
   oneAway: (string1, string2) => {
-    const insertionDelZeroDiff = (letterObj1, letterObj2) => {
+    const differ = (letterObj1, letterObj2) => {
       const diffObj = Object.keys(letterObj2)
         .reduce((accumalator, curValue) => {
           const newValue = accumalator[curValue] ?
@@ -46,8 +46,10 @@ module.exports = {
         },
         letterObj1)
 
-        Object.values(diffObj)
-          .reduce()
+      const numDiff = Object.values(diffObj)
+        .reduce((accumalator, curValue) => accumalator + curValue, 0)
+      
+      return numDiff <= 2
     }
 
     [string1, string2]
