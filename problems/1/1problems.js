@@ -43,6 +43,26 @@ module.exports = {
           currentValue !== str2[currentIndex] ? accumalator + 1 : accumalator, 0)
         === 1
 
+    const oneInsertOrDel = (str1, str2) => {
+      const [longerString, shorterString] = str1.length > str2.length ?
+        [str1, str2] :
+        [str2, str1]
+
+      const diff = shorterString.split('').reduce((accumalator, currentValue, currentIndex) =>
+        accumalator === -1 ?
+          currentValue === longerString[currentIndex] ?
+            accumalator :
+            currentIndex
+          :
+          accumalator,
+      -1,
+      )
+      if (diff === -1) {
+        return true
+      }
+      return shorterString.slice(diff) === longerString.slice(diff + 1)
+    }
+
     return string1 === string2 ?
       true :
       string1.length === string2.length ?
