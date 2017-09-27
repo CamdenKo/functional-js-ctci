@@ -5,7 +5,9 @@
     "module": false
   },
   "rules": {
-    "semi":"off"
+    "semi":"off",
+    "no-nested-ternary": "off",
+    "no-confusing-arrow": "off"
   },
   "extends": "airbnb"
 }

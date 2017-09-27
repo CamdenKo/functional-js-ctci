@@ -36,25 +36,20 @@ module.exports = {
     return countOddObjValues(letterCounts) <= 1
   },
   oneAway: (string1, string2) => {
-    const differ = (letterObj1, letterObj2) => {
-      const diffObj = Object.keys(letterObj2)
-        .reduce((accumalator, curValue) => {
-          const newValue = accumalator[curValue] ?
-            Math.abs(accumalator[curValue] - (letterObj2[curValue] ? letterObj2[curValue] : 0)) :
-            letterObj2[curValue]
-          return Object.assign(accumalator, { [curValue]: newValue })
-        },
-        letterObj1)
+    const oneReplace = (str1, str2) =>
+      str1
+        .split('')
+        .reduce((accumalator, currentValue, currentIndex) =>
+          currentValue !== str2[currentIndex] ? accumalator + 1 : accumalator, 0)
+        === 1
 
-      const numDiff = Object.values(diffObj)
-        .reduce((accumalator, curValue) => accumalator + curValue, 0)
-      
-      return numDiff <= 2
-    }
-
-    [string1, string2]
-      .map(str => letterCountsObjFromArr(str.split('')))
-      // .reduce((accumalator, curValue) => (), false)
+    return string1 === string2 ?
+      true :
+      string1.length === string2.length ?
+        oneReplace(string1, string2) :
+        Math.abs(string1.length - string2.length) === 1 ?
+          oneInsertOrDel(string1, string2) :
+          false
   },
 }
 
