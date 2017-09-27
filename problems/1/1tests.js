@@ -5,6 +5,7 @@ const {
   urlIfy,
   palindromePermutation,
   oneAway,
+  stringCompression,
 } = require('./1problems')
 
 describe('Chapter 1, [], ""', () => {
@@ -104,6 +105,29 @@ describe('Chapter 1, [], ""', () => {
     it('returns false if more than one away', () => {
       const strings = ['adsffff', 'asdff']
       expect(oneAway(...strings)).to.be.eql(false)
+    })
+  })
+
+  describe('1.6 stringCompression', () => {
+    it('returns original string if the original string is shorter', () => {
+      const string = 'a'
+      expect(stringCompression(string)).to.be.eql(string)
+    })
+    it('returns the original string if the original string is the same length', () => {
+      const string = 'aa'
+      expect(stringCompression(string)).to.be.eql(string)
+    })
+    it('works for differing letters', () => {
+      const string = 'aaabbbccc'
+      expect(stringCompression(string)).to.be.eql('3a3b3c')
+    })
+    it('handles the same letter apart from each other', () => {
+      const string = 'aabbbbaa'
+      expect(stringCompression(string)).to.be.eql('2a4b2a')
+    })
+    it('handles upper and lower case characters', () => {
+      const string = 'AAAaaaAAA'
+      expect(stringCompression(string)).to.be.eql('3A3a3A')
     })
   })
 })
