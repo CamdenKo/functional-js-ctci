@@ -3,6 +3,33 @@ const {
   List,
 } = require('immutable')
 
+const oneReplace = (str1, str2) =>
+  str1
+    .split('')
+    .reduce((accumalator, currentValue, currentIndex) =>
+      currentValue !== str2[currentIndex] ? accumalator + 1 : accumalator, 0)
+    === 1
+
+const oneInsertOrDel = (str1, str2) => {
+  const [longerString, shorterString] = str1.length > str2.length ?
+    [str1, str2] :
+    [str2, str1]
+
+  const diff = shorterString.split('').reduce((accumalator, currentValue, currentIndex) =>
+    accumalator === -1 ?
+      currentValue === longerString[currentIndex] ?
+        accumalator :
+        currentIndex
+      :
+      accumalator,
+  -1,
+  )
+  if (diff === -1) {
+    return true
+  }
+  return shorterString.slice(diff) === longerString.slice(diff + 1)
+}
+
 const letterCountsObjFromArr = arr =>
   arr.reduce((accumalator, curValue) => {
     const newValue = accumalator[curValue] ?
@@ -36,32 +63,6 @@ module.exports = {
     return countOddObjValues(letterCounts) <= 1
   },
   oneAway: (string1, string2) => {
-    const oneReplace = (str1, str2) =>
-      str1
-        .split('')
-        .reduce((accumalator, currentValue, currentIndex) =>
-          currentValue !== str2[currentIndex] ? accumalator + 1 : accumalator, 0)
-        === 1
-
-    const oneInsertOrDel = (str1, str2) => {
-      const [longerString, shorterString] = str1.length > str2.length ?
-        [str1, str2] :
-        [str2, str1]
-
-      const diff = shorterString.split('').reduce((accumalator, currentValue, currentIndex) =>
-        accumalator === -1 ?
-          currentValue === longerString[currentIndex] ?
-            accumalator :
-            currentIndex
-          :
-          accumalator,
-      -1,
-      )
-      if (diff === -1) {
-        return true
-      }
-      return shorterString.slice(diff) === longerString.slice(diff + 1)
-    }
 
     return string1 === string2 ?
       true :
@@ -71,5 +72,6 @@ module.exports = {
           oneInsertOrDel(string1, string2) :
           false
   },
+
 }
 
