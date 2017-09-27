@@ -30,6 +30,24 @@ const oneInsertOrDel = (str1, str2) => {
   return shorterString.slice(diff) === longerString.slice(diff + 1)
 }
 
+const generateCompressedString = string =>
+  string
+    .split('')
+    .reduce((accumalator, letter) => {
+      if (accumalator.length) {
+        if (accumalator[accumalator.length - 1].letter === letter) {
+          const newCount = accumalator[accumalator.length - 1].count + 1
+          return [...accumalator.slice(0, accumalator.length - 1), { letter, count: newCount }]
+        }
+        return [...accumalator, { letter, count: 1 }]
+      }
+      return [{ letter, count: 1 }]
+    }, [])
+    .reduce((accumalator, curValue) =>
+      accumalator + curValue.count + curValue.letter,
+    '')
+
+
 const letterCountsObjFromArr = arr =>
   arr.reduce((accumalator, curValue) => {
     const newValue = accumalator[curValue] ?
@@ -62,16 +80,19 @@ module.exports = {
     )
     return countOddObjValues(letterCounts) <= 1
   },
-  oneAway: (string1, string2) => {
-
-    return string1 === string2 ?
+  oneAway: (string1, string2) =>
+    string1 === string2 ?
       true :
       string1.length === string2.length ?
         oneReplace(string1, string2) :
         Math.abs(string1.length - string2.length) === 1 ?
           oneInsertOrDel(string1, string2) :
-          false
+          false,
+  stringCompression: (string) => {
+    const compressed = generateCompressedString(string)
+    return compressed.length < string.length ?
+      compressed :
+      string
   },
-
 }
 
