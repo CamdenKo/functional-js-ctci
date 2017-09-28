@@ -94,5 +94,12 @@ module.exports = {
       compressed :
       string
   },
+  isSubstring: (string1, string2) => {
+    const [shorterString, longerString] = string1.length > string2.length ?
+      [string2, string1] :
+      [string1, string2]
+
+    return longerString.includes(shorterString)
+  },
 }
 

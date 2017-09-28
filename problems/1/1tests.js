@@ -6,6 +6,7 @@ const {
   palindromePermutation,
   oneAway,
   stringCompression,
+  isSubstring,
 } = require('./1problems')
 
 describe('Chapter 1, [], ""', () => {
