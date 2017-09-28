@@ -130,4 +130,27 @@ describe('Chapter 1, [], ""', () => {
       expect(stringCompression(string)).to.be.eql('3A3a3A')
     })
   })
+
+  describe('1.9- isSubstring', () => {
+    it('returns true for a null string', () => {
+      const strings = ['', 'asdf']
+      expect(isSubstring(...strings)).to.be.eql(true)
+    })
+    it('works', () => {
+      const strings = ['asd', 'asdf']
+      expect(isSubstring(...strings)).to.be.eql(true)
+    })
+    it('works in any order', () => {
+      const strings = ['asdf', 'asd']
+      expect(isSubstring(...strings)).to.be.eql(true)
+    })
+    it('returns false if not substring', () => {
+      const strings = ['asdfffw', 'oooo']
+      expect(isSubstring(...strings)).to.be.eql(false)
+    })
+    it('takes into account whitespace', () => {
+      const strings = ['12345 678', '56']
+      expect(isSubstring(...strings)).to.be.eql(false)
+    })
+  })
 })
