@@ -7,6 +7,7 @@ const {
   oneAway,
   stringCompression,
   isSubstring,
+  isRotation,
 } = require('./1problems')
 
 describe('Chapter 1, [], ""', () => {
@@ -152,6 +153,22 @@ describe('Chapter 1, [], ""', () => {
     it('takes into account whitespace', () => {
       const strings = ['12345 678', '56']
       expect(isSubstring(...strings)).to.be.eql(false)
+    })
+  })
+
+  describe('1.9 isRotation', () => {
+    it('returns false if either string is null', () => {
+      const strings = ['', 'abc']
+      expect(isRotation(...strings)).to.be.eql(false)
+      expect(isRotation(strings[1], strings[0])).to.be.eql(false)
+    })
+    it('returns true if the strings are a rotation of one another', () => {
+      const strings = ['rotation', 'tionrota']
+      expect(isRotation(...strings)).to.be.eql(true)
+    })
+    it('returns false if the strings are not a rotation of one another', () => {
+      const strings = ['notRotation', 'rotationnot']
+      expect(isRotation(...strings)).to.be.eql(false)
     })
   })
 })
