@@ -2,7 +2,8 @@
   "globals": {
     "describe": false,
     "it": false,
-    "module": false
+    "module": false,
+    "expect": false
   },
   "rules": {
     "semi":"off",
