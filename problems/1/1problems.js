@@ -56,6 +56,14 @@ const letterCountsObjFromArr = arr =>
     return Object.assign(accumalator, { [curValue]: newValue })
   }, {})
 
+const isSubstring =  (string1, string2) => {
+  const [shorterString, longerString] = string1.length > string2.length ?
+    [string2, string1] :
+    [string1, string2]
+
+  return longerString.includes(shorterString)
+}
+
 module.exports = {
   isUnique: toTest => Set(toTest.split('')).size === toTest.length,
   checkPermutation: (string1, string2) => {
@@ -94,12 +102,10 @@ module.exports = {
       compressed :
       string
   },
-  isSubstring: (string1, string2) => {
-    const [shorterString, longerString] = string1.length > string2.length ?
-      [string2, string1] :
-      [string1, string2]
-
-    return longerString.includes(shorterString)
-  },
+  isSubstring,
+  isRotation: (string1, string2) =>
+    (string1.length && string2.length) ?
+      isSubstring(string1 + string1, string2) :
+      false,
 }
 
