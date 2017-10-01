@@ -1,5 +1,8 @@
 const LinkedList = require('./2.utilities')
 const { expect } = require('chai')
+const {
+  removeDups,
+} = require('./2problems')
 
 describe('Chapter 2, Linked Lists', () => {
   describe('LinkedList tests', () => {
@@ -21,6 +24,25 @@ describe('Chapter 2, Linked Lists', () => {
     it('returns a linkedList without duplicates', () => {
       const head = new LinkedList(1)
       head.next = new LinkedList(1)
+      const newName = removeDups(head)
+      expect(newName.getLength()).to.be.eql(1)
+    })
+    it('works with long lists', () => {
+      const head = new LinkedList(
+        1,
+        new LinkedList(
+          2,
+          new LinkedList(
+            1,
+            new LinkedList(
+              2,
+            ),
+          ),
+        ),
+      )
+
+      const newHead = removeDups(head)
+      expect(newHead.getLength()).to.be.eql(2)
     })
   })
 })
