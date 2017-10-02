@@ -5,13 +5,9 @@ const createSingleNode = (arrOfVal) => {
   return new LinkedList(arrOfVal[0], createSingleNode(arrOfVal.slice(1)))
 }
 
-const generateLL = values =>
-  createSingleNode(values.reverse())
-
-
 const removeDups = (head, seenValues = new Set(), values = []) => {
   if (!head) {
-    return generateLL(values)
+    return createSingleNode(values)
   }
   if (!seenValues.has(head.value)) {
     seenValues.add(head.value)

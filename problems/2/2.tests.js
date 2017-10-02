@@ -36,6 +36,9 @@ describe('Chapter 2, Linked Lists', () => {
             1,
             new LinkedList(
               2,
+              new LinkedList(
+                1,
+              ),
             ),
           ),
         ),
@@ -43,6 +46,21 @@ describe('Chapter 2, Linked Lists', () => {
 
       const newHead = removeDups(head)
       expect(newHead.getLength()).to.be.eql(2)
+    })
+    it('keeps data in order', () => {
+      const head = new LinkedList(
+        1,
+        new LinkedList(
+          2,
+          new LinkedList(
+            1,
+            new LinkedList(3),
+          ),
+        ),
+      )
+
+      const newHead = removeDups(head)
+      expect(newHead.value).to.be.eql(1)
     })
   })
 })
