@@ -16,6 +16,9 @@ const removeDups = (head, seenValues = new Set(), values = []) => {
   return removeDups(head.next, seenValues, values)
 }
 
+const kthToLast = (list, k) => 3
+
 module.exports = {
   removeDups,
+  kthToLast,
 }
