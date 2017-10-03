@@ -3,6 +3,7 @@ const { expect } = require('chai')
 const {
   removeDups,
   kthToLast,
+  removeLastNode,
 } = require('./2problems')
 
 describe('Chapter 2, Linked Lists', () => {
@@ -66,6 +67,19 @@ describe('Chapter 2, Linked Lists', () => {
   })
 
   describe('2.2 kth to last', () => {
+    describe('removeLastNode', () => {
+      it('returns null if a linkedList with one node is supplied', () => (
+        expect(removeLastNode(new LinkedList(1))).to.be.eql(null)
+      ))
+      it('makes the linked list one shorter', () => {
+        const head = new LinkedList(1, new LinkedList(2))
+        expect(removeLastNode(head).getLength()).to.be.eql(1)
+      })
+      it('keeps the proper nodes', () => {
+        const head = new LinkedList(1, new LinkedList(2))
+        expect(removeLastNode(head).value).to.be.eql(1)
+      })
+    })
     it('returns null if k is larger than length', () => {
       const head = new LinkedList(
         1,
