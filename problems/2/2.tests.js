@@ -4,6 +4,7 @@ const {
   removeDups,
   kthToLast,
   removeLastNode,
+  partition,
 } = require('./2problems')
 
 describe('Chapter 2, Linked Lists', () => {
@@ -97,6 +98,17 @@ describe('Chapter 2, Linked Lists', () => {
         new LinkedList(1, new LinkedList(2)),
         1,
       )).to.be.eql(1)
+    })
+  })
+
+  describe('2.4 partition', () => {
+    it('puts value less than partition to left and greater to right', () => {
+      expect(partition(new LinkedList(3, new LinkedList(1)), 2).getSequentialValues())
+        .to.be.eql([1, 3])
+    })
+    it('puts partition on right side', () => {
+      expect(partition(new LinkedList(3, new LinkedList(2)), 3).getSequentialValues())
+        .to.be.eql([2, 3])
     })
   })
 })

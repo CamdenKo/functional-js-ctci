@@ -28,8 +28,15 @@ const kthToLast = (list, k) =>
       getToLast(list) :
     null
 
+const partition = (list, part, values = []) => {
+  if (!list) return createLLFromArr(values)
+  if (list.value < part) return partition(list.next, part, [list.value, ...values])
+  return partition(list.next, part, [...values, list.value])
+}
+
 module.exports = {
   removeDups,
   removeLastNode,
   kthToLast,
+  partition,
 }
