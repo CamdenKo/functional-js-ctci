@@ -58,6 +58,7 @@ module.exports = {
   removeDups,
   removeLastNode,
   kthToLast,
+  createLLFromArr,
   partition,
   sumLists,
 }

@@ -6,6 +6,8 @@ const {
   removeLastNode,
   partition,
   sumLists,
+  createLLFromArr,
+  palindrome,
 } = require('./2problems')
 
 describe('Chapter 2, Linked Lists', () => {
@@ -143,6 +145,27 @@ describe('Chapter 2, Linked Lists', () => {
     it('works with lists of different lengths', () => {
       expect(sumLists(new LinkedList(1), new LinkedList(1, new LinkedList(2))).getSequentialValues())
         .to.eql([2, 2])
+    })
+  })
+  describe('2.6 palindrome', () => {
+    it('returns true if no input', () => {
+      expect(palindrome()).to.eql(true)
+    })
+    it('returns true for a simple palindrome', () => {
+      expect(palindrome(new LinkedList(1, new LinkedList(1)))).to.eql(true)
+    })
+    it('returns true for a simple palindrome with odd number of nodes', () => {
+      expect(palindrome(new LinkedList(1, new LinkedList(2, new LinkedList(1)))))
+        .to.eql(true)
+    })
+    it('returns false for a non palindrome', () => (
+      expect(palindrome(new LinkedList(1, new LinkedList(2)))).to.eql(false)
+    ))
+    it('returns true for a complex palindrome', () => {
+      expect(palindrome(createLLFromArr([1, 2, 3, 4, 3, 2, 1])))
+    })
+    it('returns false for a complex non palindrome', () => {
+      expect(palindrome(createLLFromArr([1, 2, '2', '1'])))
     })
   })
 })
