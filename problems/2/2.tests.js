@@ -34,37 +34,12 @@ describe('Chapter 2, Linked Lists', () => {
       expect(newName.getLength()).to.be.eql(1)
     })
     it('works with long lists', () => {
-      const head = new LinkedList(
-        1,
-        new LinkedList(
-          2,
-          new LinkedList(
-            1,
-            new LinkedList(
-              2,
-              new LinkedList(
-                1,
-              ),
-            ),
-          ),
-        ),
-      )
-
+      const head = createLLFromArr([1, 2, 1, 2, 1])
       const newHead = removeDups(head)
       expect(newHead.getLength()).to.be.eql(2)
     })
     it('keeps data in order', () => {
-      const head = new LinkedList(
-        1,
-        new LinkedList(
-          2,
-          new LinkedList(
-            1,
-            new LinkedList(3),
-          ),
-        ),
-      )
-
+      const head = createLLFromArr([1, 2, 1, 3])
       const newHead = removeDups(head)
       expect(newHead.value).to.be.eql(1)
     })
