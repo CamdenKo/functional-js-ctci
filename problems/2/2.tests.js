@@ -138,7 +138,11 @@ describe('Chapter 2, Linked Lists', () => {
     it('works with complex summations', () => {
       const first = new LinkedList(7, new LinkedList(1, new LinkedList(6)))
       const second = new LinkedList(5, new LinkedList(9, new LinkedList(2)))
-      expect(sumLists(first, second).getSequentialValues()).to.eql([9, 1, 2])
+      expect(sumLists(first, second).getSequentialValues()).to.eql([2, 1, 9])
+    })
+    it('works with lists of different lengths', () => {
+      expect(sumLists(new LinkedList(1), new LinkedList(1, new LinkedList(2))).getSequentialValues())
+        .to.eql([2, 2])
     })
   })
 })
