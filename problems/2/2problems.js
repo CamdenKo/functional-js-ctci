@@ -54,11 +54,23 @@ const sumLists = (node1, node2, carry = 0, values = []) => {
     createLLFromArr([...values, toValue])
 }
 
+const palindromeFromArr = arr =>
+  arr.length ?
+    arr[0] === arr[arr.length - 1] ?
+      palindromeFromArr(arr.slice(1, arr.length - 1)) :
+      false :
+    true
+
+const palindrome = (node, values = []) =>
+  node ? palindrome(node.next, [...values, node.value]) : palindromeFromArr(values)
+
+
 module.exports = {
   removeDups,
   removeLastNode,
   kthToLast,
   createLLFromArr,
   partition,
+  palindrome,
   sumLists,
 }
