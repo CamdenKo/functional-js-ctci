@@ -56,7 +56,7 @@ const letterCountsObjFromArr = arr =>
     return Object.assign(accumalator, { [curValue]: newValue })
   }, {})
 
-const isSubstring =  (string1, string2) => {
+const isSubstring = (string1, string2) => {
   const [shorterString, longerString] = string1.length > string2.length ?
     [string2, string1] :
     [string1, string2]
