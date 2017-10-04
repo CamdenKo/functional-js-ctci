@@ -5,6 +5,7 @@ const {
   kthToLast,
   removeLastNode,
   partition,
+  sumLists,
 } = require('./2problems')
 
 describe('Chapter 2, Linked Lists', () => {
@@ -109,6 +110,35 @@ describe('Chapter 2, Linked Lists', () => {
     it('puts partition on right side', () => {
       expect(partition(new LinkedList(3, new LinkedList(2)), 3).getSequentialValues())
         .to.be.eql([2, 3])
+    })
+  })
+
+  describe('2.5 sumLists', () => {
+    it('returns a LL', () => {
+      expect(sumLists(new LinkedList(1), new LinkedList(1)) instanceof LinkedList).to.eql(true)
+    })
+    it('adds simple LL\'s', () => {
+      expect(sumLists(new LinkedList(1), new LinkedList(2)).value).to.eql(3)
+    })
+    it('adds simple multiple LL\'s', () => {
+      const first = new LinkedList(1, new LinkedList(2))
+      const second = new LinkedList(3, new LinkedList(4))
+      expect(sumLists(first, second).getSequentialValues()).to.eql([4, 6])
+    })
+    it('works the same regardless of order', () => {
+      const first = new LinkedList(1, new LinkedList(2))
+      const second = new LinkedList(3, new LinkedList(4))
+      expect(sumLists(first, second).getSequentialValues()).to.eql(
+        sumLists(second, first).getSequentialValues(),
+      )
+    })
+    it('works when having to carry a one', () => {
+      expect(sumLists(new LinkedList(5), new LinkedList(5)).getSequentialValues()).to.eql([0, 1])
+    })
+    it('works with complex summations', () => {
+      const first = new LinkedList(7, new LinkedList(1, new LinkedList(6)))
+      const second = new LinkedList(5, new LinkedList(9, new LinkedList(2)))
+      expect(sumLists(first, second).getSequentialValues()).to.eql([9, 1, 2])
     })
   })
 })
