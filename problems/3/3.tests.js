@@ -2,6 +2,9 @@ const { expect } = require('chai')
 const {
   MinStack,
 } = require('./3problems')
+const {
+  fillArr,
+} = require('./3.tests')
 
 describe('Chapter 3 S + Q\'s', () => {
   describe('3.2 MinStack min property', () => {
@@ -19,5 +22,10 @@ describe('Chapter 3 S + Q\'s', () => {
       const stack = new MinStack(3, 2, 1)
       expect(stack.pop().min).to.eql(2)
     })
+  })
+  describe('3.3 Stack of Plates', () => {
+    const fillArrWith1 = fillArr(1)
+    const maxStackH = 10
+
   })
 })
