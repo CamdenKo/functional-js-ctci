@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./problems --recursive --watch"
+    "test": "mocha ./problems --recursive --watch",
+    "test-3": "mocha ./problems/3 --recursive --watch"
   },
   "keywords": [],
   "author": "Camden <camdenko@gmail.com> (camdenko.github.io)",

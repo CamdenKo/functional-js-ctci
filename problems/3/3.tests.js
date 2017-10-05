@@ -2,10 +2,11 @@ const { expect } = require('chai')
 const {
   MinStack,
   PlateStack,
+  convertValuesToSeveralArrs,
 } = require('./3problems')
 const {
   fillArr,
-} = require('./3.tests')
+} = require('./3.utilities')
 
 describe('Chapter 3 S + Q\'s', () => {
   describe('3.2 MinStack min property', () => {
@@ -28,11 +29,21 @@ describe('Chapter 3 S + Q\'s', () => {
     const fillArrWith1 = fillArr(1)
     const maxStackH = 10
 
+    describe('convertValuestoSeveralArrs', () => {
+      it('will create an array with an appropriate size', () => {
+        expect(convertValuesToSeveralArrs(3, fillArrWith1(4)).length).to.eql(2)
+      })
+      it('will store them appropriately', () => {
+        expect(convertValuesToSeveralArrs(3, fillArrWith1(4)))
+          .to.eql([[1, 1, 1], [1]])
+      })
+    })
+
     it('will add a second stack when the number of elements exceed maxstackH', () => {
       const pstack = new PlateStack(maxStackH)
       const onePstack = pstack.push(1)
       expect(onePstack.numStacks).to.eql(1)
-      const elevenPStack = pstack.pushMany(...fillArrWith1(11))
+      const elevenPStack = onePstack.pushMany(...fillArrWith1(11))
       expect(elevenPStack.numStacks).to.eql(2)
     })
     it('will remove unused stacks', () => {
