@@ -1,6 +1,7 @@
 const { expect } = require('chai')
 const {
   MinStack,
+  PlateStack,
 } = require('./3problems')
 const {
   fillArr,
@@ -27,5 +28,28 @@ describe('Chapter 3 S + Q\'s', () => {
     const fillArrWith1 = fillArr(1)
     const maxStackH = 10
 
+    it('will add a second stack when the number of elements exceed maxstackH', () => {
+      const pstack = new PlateStack(maxStackH)
+      const onePstack = pstack.push(1)
+      expect(onePstack.numStacks).to.eql(1)
+      const elevenPStack = pstack.pushMany(...fillArrWith1(11))
+      expect(elevenPStack.numStacks).to.eql(2)
+    })
+    it('will remove unused stacks', () => {
+      const pstack = new PlateStack(maxStackH)
+      const edited = pstack
+        .pushMany(...fillArrWith1(11))
+        .pop()
+        .pop()
+        .pop()
+      expect(edited.numStacks).to.eql(1)
+    })
+    it('is LIFO', () => {
+      const pstack = new PlateStack(maxStackH)
+      const edited = pstack
+        .pushMany(1, 2)
+        .pop()
+      expect(edited.peek()).to.eql(1)
+    })
   })
 })
