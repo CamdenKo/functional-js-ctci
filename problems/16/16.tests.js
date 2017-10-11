@@ -1,6 +1,7 @@
 const { expect } = require('chai')
 const {
   numberSwapper,
+  wordFrequencies,
 } = require('./16problems')
 
 describe('Chapter 16 Moderate', () => {
@@ -14,6 +15,18 @@ describe('Chapter 16 Moderate', () => {
       const numbers = [0, 0]
       numberSwapper(numbers)
       expect(numbers).to.eql([0, 0])
+    })
+  })
+
+  describe('16.2 word frequencies', () => {
+    it('returns 0 if no occurences', () => {
+      expect(wordFrequencies('hello world', 'abe')).to.eql(0)
+    })
+    it('returns the proper number for multiple occurences', () => {
+      expect(wordFrequencies('hello a hello', 'hello')).to.eql(2)
+    })
+    it('doesn\'t count partial words', () => {
+      expect(wordFrequencies('hello hello1 hell hello', 'hello')).to.eql(2)
     })
   })
 })
