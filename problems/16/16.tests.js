@@ -2,6 +2,7 @@ const { expect } = require('chai')
 const {
   numberSwapper,
   wordFrequencies,
+  cacheWordFrequencies,
 } = require('./16problems')
 
 describe('Chapter 16 Moderate', () => {
@@ -27,6 +28,16 @@ describe('Chapter 16 Moderate', () => {
     })
     it('doesn\'t count partial words', () => {
       expect(wordFrequencies('hello hello1 hell hello', 'hello')).to.eql(2)
+    })
+  })
+
+  describe('16.2 cachedWordFrequencies', () => {
+    it('returns a function', () => {
+      expect(typeof cacheWordFrequencies('ls sdf')).to.eql('function')
+    })
+    it('returns a function that returns a number', () => {
+      const wordFreq = cacheWordFrequencies('ls dff ls')
+      expect(typeof wordFreq('ls')).to.eql('number')
     })
   })
 })

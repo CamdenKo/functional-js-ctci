@@ -4,8 +4,8 @@ const numberSwapper = (arr) => {
   arr[0] -= arr[1]
 }
 
-const wordFrequencies = (fullText, target) =>
-  fullText
+const wordFrequenciesObj = text =>
+  text
     .split(' ')
     .filter(ele => ele)
     .reduce(
@@ -18,9 +18,19 @@ const wordFrequencies = (fullText, target) =>
         },
       ),
       {},
-    )[target] || 0
+    )
+
+const wordFrequencies = (fullText, target) =>
+  wordFrequenciesObj(fullText)[target] || 0
+
+const cacheWordFrequencies = (fullText) => {
+  const frequencies = wordFrequenciesObj(fullText)
+  return target =>
+    frequencies[target] || 0
+}
 
 module.exports = {
   numberSwapper,
   wordFrequencies,
+  cacheWordFrequencies,
 }
